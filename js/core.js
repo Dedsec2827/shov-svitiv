@@ -43,7 +43,7 @@
     'foot.about': 'A travel agency for worlds that never were. We stitch together what does not fit in real life.',
     'foot.worlds': 'Worlds', 'foot.agency': 'Agency', 'foot.how': 'How it works', 'foot.faq': 'Questions',
     'foot.legal1': 'Competition entry for CreDiCo 2026, theme “A mix of worlds: combine the incompatible”.',
-    'foot.legal2': 'Author: Klymchuk. All graphics drawn in code, fonts under SIL OFL.',
+    'foot.legal2': 'Author: Serhii Klymchuk. All graphics drawn in code, fonts under SIL OFL.',
     'guide.close': 'Hide hint', 'menu.main': 'Main menu', 'menu.lbl': 'Menu', 'rate5': '5 out of 5', 'guide.btn': 'Stitchy the guide: click for a tip'
   });
   function captureUA(el, key, mode, attr) {
@@ -117,7 +117,7 @@
       '<li><a href="Klymchuk_booking.html" data-i18n="nav.book">Бронювання</a></li>' +
       '<li><a href="index.html#faq" data-i18n="foot.faq">Запитання</a></li></ul></div>' +
       '<div class="legal"><span data-i18n="foot.legal1">Конкурсна робота CreDiCo 2026, тема «Мікс світів: поєднай непоєднуване».</span>' +
-      '<span data-i18n="foot.legal2">Автор: Климчук. Уся графіка намальована кодом, шрифти за ліцензією SIL OFL.</span></div>' +
+      '<span data-i18n="foot.legal2">Автор: Климчук Сергій. Уся графіка намальована кодом, шрифти за ліцензією SIL OFL.</span></div>' +
       '</div></footer>';
   }
   function tourNames() {
