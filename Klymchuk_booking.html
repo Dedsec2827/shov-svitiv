@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бронювання і квитки — Шов Світів</title>
+<meta name="description" content="Забронюйте подорож у світ, якого не буває, і отримайте іменний квиток-комікс.">
+<meta name="author" content="Климчук">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/booking.css">
+<script>(function(d){try{var s=sessionStorage,l=localStorage,c=l.getItem('ss_calm');if(c==='true'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.classList.add('calm');if(!s.getItem('ss_seen'))d.classList.add('first');else if(s.getItem('ss_nav'))d.classList.add('entering')}catch(e){}setTimeout(function(){d.classList.remove('first','entering')},5000)})(document.documentElement)</script>
+</head>
+<body data-page="booking" data-world="booking">
+<div id="loader"><div class="half l"></div><div class="half r"></div><div class="thread"></div>
+  <div class="ld" aria-hidden="true"><div class="ld-bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ld-t" data-i18n="loader.t">ЗШИВАЄМО СВІТИ...</div><span class="ld-n" id="ldn">0%</span></div>
+  <button class="skip" type="button" data-noboom data-i18n="loader.skip">ПРОПУСТИТИ</button></div>
+<div id="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span><b></b></div>
+<noscript><p class="no-js-note">Для повної роботи сайту увімкніть JavaScript.</p></noscript>
+<div id="ss-header"></div>
+
+<main>
+  <section class="b-head">
+    <div class="halftone"></div>
+    <div class="wrap">
+      <p class="kicker" data-i18n="kick">КАСА</p>
+      <h1 id="bTitle" data-i18n="title">Бронювання</h1>
+      <p data-i18n="lead">Три кроки до квитка у світ, якого не існує. Оплата снами, видача квитка миттєва.</p>
+      <ol class="stepper" id="stepper">
+        <li class="on"><b>1</b><span data-i18n="st1">Світ</span></li>
+        <li><b>2</b><span data-i18n="st2">Коли і скільки</span></li>
+        <li><b>3</b><span data-i18n="st3">Клас і мандрівник</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap b-grid">
+      <form id="bForm" novalidate>
+        <fieldset class="panel-step" data-step="1" style="margin:0">
+          <legend class="sr" data-i18n="st1">Світ</legend>
+          <h2 data-i18n="p1t">Куди вирушаємо?</h2>
+          <p class="sub" data-i18n="p1s">Оберіть один із турів сезону або світ, який ви зшили в конструкторі.</p>
+          <div class="choices" id="tourChoices"></div>
+          <p class="err" id="e1" role="alert"></p>
+          <div class="nav-row"><span></span><button class="btn" type="button" data-next data-i18n="next">Далі</button></div>
+        </fieldset>
+
+        <fieldset class="panel-step" data-step="2" hidden style="margin:0">
+          <legend class="sr" data-i18n="st2">Коли і скільки</legend>
+          <h2 data-i18n="p2t">Коли вирушаємо?</h2>
+          <p class="sub" data-i18n="p2s">У наших світах час теж зшитий, тож спершу оберіть епоху, а потім день.</p>
+          <div class="eras" id="eras" role="radiogroup" aria-label="Епоха" data-i18n-attr="aria-label:eraL"></div>
+          <div class="cal" id="cal" role="group" aria-label="День" data-i18n-attr="aria-label:dayL"></div>
+          <div class="trav">
+            <span style="font-weight:700" id="travL" data-i18n="trav">Мандрівників:</span>
+            <button class="stepbtn" type="button" id="minus" aria-label="Менше мандрівників" data-i18n-attr="aria-label:less" data-noboom>−</button>
+            <output id="travN" aria-labelledby="travL">1</output>
+            <button class="stepbtn" type="button" id="plus" aria-label="Більше мандрівників" data-i18n-attr="aria-label:more" data-noboom>+</button>
+            <span class="people" id="people" aria-hidden="true"></span>
+          </div>
+          <p class="err" id="e2" role="alert"></p>
+          <div class="nav-row"><button class="btn ghost" type="button" data-prev data-i18n="prev">Назад</button><button class="btn" type="button" data-next data-i18n="next">Далі</button></div>
+        </fieldset>
+
+        <fieldset class="panel-step" data-step="3" hidden style="margin:0">
+          <legend class="sr" data-i18n="st3">Клас і мандрівник</legend>
+          <h2 data-i18n="p3t">Як подорожуємо?</h2>
+          <p class="sub" data-i18n="p3s">Клас впливає на ціну і на те, наскільки м'якою буде посадка.</p>
+          <div class="choices" id="classChoices"></div>
+          <div class="fields">
+            <div class="field"><label for="pName" data-i18n="nameL">Ім'я мандрівника</label><input class="input" id="pName" name="pName" autocomplete="name" maxlength="40" placeholder="Наприклад, Оксана Зірка" data-i18n-attr="placeholder:nameP"></div>
+            <label class="check"><input type="checkbox" id="agree"><span data-i18n="agree">Розумію, що світ вигаданий, а враження справжні</span></label>
+          </div>
+          <p class="err" id="e3" role="alert"></p>
+          <div class="nav-row"><button class="btn ghost" type="button" data-prev data-i18n="prev">Назад</button><button class="btn pink" type="submit" data-i18n="issue">Видати квиток</button></div>
+        </fieldset>
+      </form>
+
+      <aside class="summary" aria-live="polite">
+        <h3 data-i18n="sumT">Ваше бронювання</h3>
+        <dl>
+          <div><dt data-i18n="sW">Світ</dt><dd id="sWorld">—</dd></div>
+          <div><dt data-i18n="sD">Коли</dt><dd id="sDate">—</dd></div>
+          <div><dt data-i18n="sT">Мандрівників</dt><dd id="sTrav">1</dd></div>
+          <div><dt data-i18n="sC">Клас</dt><dd id="sClass">—</dd></div>
+        </dl>
+        <div class="total"><span data-i18n="sum">Разом</span><b id="sTotal">0</b></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="ticket-sec" id="ticketSec" hidden aria-labelledby="tkT">
+    <div class="wrap">
+      <h2 id="tkT" class="sr" data-i18n="tkT">Ваш квиток</h2>
+      <div class="printer">
+        <div class="slot-top" aria-hidden="true"></div>
+        <div class="ticket-wrap"><canvas id="ticket" width="1000" height="420" role="img" aria-label="Квиток"></canvas></div>
+      </div>
+      <div class="t-actions">
+        <button class="btn" type="button" id="tDl" data-i18n="tDl">Завантажити PNG</button>
+        <button class="btn ghost" type="button" id="tPrint" data-i18n="tPrint">Роздрукувати</button>
+        <button class="btn ghost" type="button" id="tNew" data-i18n="tNew">Нове бронювання</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec mytk" id="tickets" aria-labelledby="myT">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="myT" data-i18n="myT">Мої квитки</h2><p data-i18n="myS">Квитки зберігаються лише в цьому браузері.</p></div>
+      <div id="tkList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="ss-footer"></div>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/worlds.js"></script>
+<script src="js/pages/booking.js"></script>
+</body>
+</html>

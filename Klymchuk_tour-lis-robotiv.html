@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ліс роботів — Шов Світів</title>
+<meta name="description" content="Тур «Ліс роботів»: природа і технології. Оживіть дерева з шестернями та зберіть світлячків-дронів.">
+<meta name="author" content="Климчук">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/tour.css">
+<script>(function(d){try{var s=sessionStorage,l=localStorage,c=l.getItem('ss_calm');if(c==='true'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.classList.add('calm');if(!s.getItem('ss_seen'))d.classList.add('first');else if(s.getItem('ss_nav'))d.classList.add('entering')}catch(e){}setTimeout(function(){d.classList.remove('first','entering')},5000)})(document.documentElement)</script>
+</head>
+<body data-page="tour" data-world="lis">
+<div id="loader"><div class="half l"></div><div class="half r"></div><div class="thread"></div>
+  <div class="ld" aria-hidden="true"><div class="ld-bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ld-t" data-i18n="loader.t">ЗШИВАЄМО СВІТИ...</div><span class="ld-n" id="ldn">0%</span></div>
+  <button class="skip" type="button" data-noboom data-i18n="loader.skip">ПРОПУСТИТИ</button></div>
+<div id="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span><b></b></div>
+<noscript><p class="no-js-note">Для повної роботи сайту увімкніть JavaScript.</p></noscript>
+<div id="ss-header"></div>
+
+<main>
+  <section class="t-hero">
+    <div class="halftone"></div>
+    <div class="wrap">
+      <div class="copy">
+        <a class="back" href="index.html#tours" data-i18n="tc.back">← Усі світи</a>
+        <p class="kicker" data-i18n="kick">ПРИРОДА + ТЕХНОЛОГІЇ</p>
+        <h1 class="t-title" data-i18n="title">Ліс роботів</h1>
+        <p class="t-lead" data-i18n="lead">Тут дерева ростуть із шестерень, а листя замінює сонячні панелі. Світлячки виявилися дронами, гриби заряджають телефони, а лісник дуже просить не забувати змащувати сосни.</p>
+        <div class="stats">
+          <div class="stat"><small data-i18n="tc.dur">Тривалість</small><b data-i18n="s1">2 дні</b></div>
+          <div class="stat"><small data-i18n="tc.class">Клас</small><b data-i18n="s2">Механолог</b></div>
+          <div class="stat"><small data-i18n="tc.price">Ціна</small><b data-i18n="s3">від 2 снів</b></div>
+        </div>
+        <div class="t-cta-row"><a class="btn acc" href="Klymchuk_booking.html" data-book data-i18n="tc.book">Забронювати місце</a></div>
+      </div>
+      <div class="t-art">
+        <svg id="heroArt" viewBox="0 0 520 480" role="img" aria-label="Дерево-робот із шестернею замість крони" data-i18n-attr="aria-label:artAlt"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-sec" aria-labelledby="groveT">
+    <div class="wrap">
+      <p class="kicker" data-i18n="gK">ІНТЕРАКТИВ</p>
+      <h2 id="groveT" data-i18n="gT">Оживіть ліс</h2>
+      <p class="intro" data-i18n="gI">Дерева заснули і чекають на заряд. Натисніть на кожне, щоб запустити шестерні. Коли ожиють усі п'ять, станеться дещо гарне. Світлячки-дрони летять за курсором.</p>
+      <div class="grove" id="grove">
+        <svg id="groveSvg" viewBox="0 0 1000 520" role="group" aria-label="Ліс із п'яти дерев-роботів" data-i18n-attr="aria-label:groveAlt">
+          <rect id="sky" width="1000" height="520" fill="#BDEBFF"/>
+          <circle id="sun" cx="840" cy="470" r="60" fill="#FFC93C" stroke="#16241A" stroke-width="5"/>
+          <path d="M0 420 Q 200 360 400 410 T 800 400 T 1000 390 V520 H0Z" fill="#7BD88F" stroke="#16241A" stroke-width="5"/>
+          <path d="M0 470 Q 250 440 500 468 T 1000 460 V520 H0Z" fill="#3CCB7F" stroke="#16241A" stroke-width="5"/>
+          <g id="trees"></g>
+          <g id="shrooms"></g>
+        </svg>
+        <canvas id="droneCv" aria-hidden="true"></canvas>
+      </div>
+      <div class="charge">
+        <div class="battery"><span data-i18n="charge">Заряд лісу:</span> <span class="cells" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> <b id="chargeN" aria-live="polite">0/5</b></div>
+        <button class="btn ghost" type="button" id="resetGrove" data-i18n="reset">Приспати ліс знову</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <div class="wrap">
+      <h2 data-i18n="tc.prog">Програма туру</h2>
+      <div class="days" style="--cols:2">
+        <div class="day"><span class="d" data-i18n="d1n">ДЕНЬ 1</span><h3 data-i18n="d1t">Стежка шестерень</h3><p data-i18n="d1">Прогулянка з робо-лісником Гвинтомиром, урок змащування дубів і ночівля в дуплі з розеткою.</p></div>
+        <div class="day"><span class="d" data-i18n="d2n">ДЕНЬ 2</span><h3 data-i18n="d2t">Полювання на грибний заряд</h3><p data-i18n="d2">Збираємо гриби-павербанки, запускаємо світлячків-дронів і дивимося, як сонце заряджає листя.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="side">
+        <div class="panel"><h3 data-i18n="wxT">Погода в Лісі роботів</h3>
+          <div class="wx"><span class="t" id="wx-temp">+21°</span>
+            <ul><li data-i18n-html="wx1"><b>Сонячно</b>, листя заряджається</li><li><span data-i18n="wx2">Вологість мастила:</span> <b id="wx-a">40%</b></li><li><span data-i18n="wx3">Дронів у повітрі:</span> <b id="wx-b">120</b></li></ul></div></div>
+        <div class="panel"><h3 data-i18n="tc.pack">Що взяти з собою</h3>
+          <ul><li data-i18n-html="p1"><b>Масляну</b> з носиком для дерев</li><li data-i18n-html="p2"><b>Кабель</b> будь-якого типу, гриби універсальні</li><li data-i18n-html="p3"><b>Дощовик</b>, бо іноді йде дощ з гвинтиків</li></ul></div>
+      </div>
+      <div class="t-cta"><div><h3 data-i18n="ctaT">Ліс відкритий цілий рік</h3><p data-i18n="ctaP">Взимку дерева вмикають підігрів, тож не холодно.</p></div><a class="btn acc" href="Klymchuk_booking.html" data-book data-i18n="tc.book">Забронювати місце</a></div>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <div class="wrap">
+      <h2 data-i18n="tc.more">Інші світи</h2>
+      <p class="intro" data-i18n="tc.moreSub">Шов тут не закінчується. Оберіть наступну зупинку.</p>
+      <div class="more" id="more"></div>
+    </div>
+  </section>
+</main>
+
+<div id="ss-footer"></div>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/tour.js"></script>
+<script src="js/pages/lis-robotiv.js"></script>
+</body>
+</html>

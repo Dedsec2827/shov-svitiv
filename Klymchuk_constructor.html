@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Конструктор «Зший свій світ» — Шов Світів</title>
+<meta name="description" content="Оберіть два з восьми світів, задайте пропорцію, і Стібок зшиє новий світ з назвою, описом і палітрою. Результат можна завантажити картинкою.">
+<meta name="author" content="Климчук">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/constructor.css">
+<script>(function(d){try{var s=sessionStorage,l=localStorage,c=l.getItem('ss_calm');if(c==='true'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.classList.add('calm');if(!s.getItem('ss_seen'))d.classList.add('first');else if(s.getItem('ss_nav'))d.classList.add('entering')}catch(e){}setTimeout(function(){d.classList.remove('first','entering')},5000)})(document.documentElement)</script>
+</head>
+<body data-page="constructor" data-world="constructor">
+<div id="loader"><div class="half l"></div><div class="half r"></div><div class="thread"></div>
+  <div class="ld" aria-hidden="true"><div class="ld-bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ld-t" data-i18n="loader.t">ЗШИВАЄМО СВІТИ...</div><span class="ld-n" id="ldn">0%</span></div>
+  <button class="skip" type="button" data-noboom data-i18n="loader.skip">ПРОПУСТИТИ</button></div>
+<div id="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span><b></b></div>
+<noscript><p class="no-js-note">Для повної роботи сайту увімкніть JavaScript.</p></noscript>
+<div id="ss-header"></div>
+
+<main>
+  <section class="c-head">
+    <div class="halftone"></div>
+    <div class="wrap">
+      <p class="kicker" data-i18n="kick">КОНСТРУКТОР</p>
+      <h1 id="cTitle" data-i18n="title">Зший свій світ</h1>
+      <p data-i18n="lead">Оберіть два світи, які ніколи не мали б зустрітися, і повзунком вирішіть, якого буде більше. Стібок зшиє їх, придумає назву й опис, а ви зможете завантажити картинку або забронювати подорож.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap c-grid">
+      <form class="c-panel" id="cForm" novalidate>
+        <div>
+          <h2><span class="tag a" aria-hidden="true" data-i18n="tagA">А</span><span data-i18n="pickA">Перший світ</span></h2>
+          <div class="worlds" id="wA" role="group" aria-label="Перший світ" data-i18n-attr="aria-label:pickA"></div>
+        </div>
+        <div>
+          <h2><span class="tag b" aria-hidden="true" data-i18n="tagB">Б</span><span data-i18n="pickB">Другий світ</span></h2>
+          <div class="worlds" id="wB" role="group" aria-label="Другий світ" data-i18n-attr="aria-label:pickB"></div>
+        </div>
+        <div>
+          <label for="ratio"><h2 style="margin:0" data-i18n="ratio">Пропорція</h2></label>
+          <input type="range" class="stitch-range" id="ratio" min="20" max="80" step="5" value="50">
+          <div class="range-row"><span id="rA">50%</span><span aria-hidden="true">✂</span><span id="rB">50%</span></div>
+        </div>
+        <div class="c-actions">
+          <button class="btn pink" type="submit" id="stitchBtn" data-i18n="stitch">Зшити!</button>
+          <button class="btn ghost" type="button" id="rand" data-i18n="rand">Випадковий мікс</button>
+        </div>
+        <p class="pairs"><span data-i18n="pairs">Зшито різних пар:</span> <b id="pairsN">0/28</b></p>
+        <div>
+          <h2 data-i18n="recent">Останні мікси</h2>
+          <div class="recent" id="recent"></div>
+        </div>
+      </form>
+
+      <div class="stage">
+        <div class="canvas-frame"><canvas id="cv" width="1200" height="750" role="img" aria-label="Зшита сцена двох світів" data-i18n-attr="aria-label:cvAlt"></canvas></div>
+        <div class="result" aria-live="polite">
+          <div>
+            <h2 id="mName">Космо-Атлантида</h2>
+            <p id="mDesc"></p>
+            <div class="swatches" id="sw" aria-label="Палітра світу" data-i18n-attr="aria-label:palette"></div>
+          </div>
+          <div class="traits">
+            <div class="trait"><span><span data-i18n="tr1">Пригодницькість</span> <b id="t0"></b></span><span class="bar"><i id="b0"></i></span></div>
+            <div class="trait"><span><span data-i18n="tr2">Затишок</span> <b id="t1"></b></span><span class="bar"><i id="b1"></i></span></div>
+            <div class="trait"><span><span data-i18n="tr3">Дивність</span> <b id="t2"></b></span><span class="bar"><i id="b2"></i></span></div>
+          </div>
+          <div class="res-actions">
+            <button class="btn" type="button" id="dl" data-i18n="dl">Завантажити картинку</button>
+            <a class="btn ghost" href="Klymchuk_booking.html" id="bookMix" data-i18n="book">Забронювати цей світ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="ss-footer"></div>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/worlds.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/pages/constructor.js"></script>
+</body>
+</html>
